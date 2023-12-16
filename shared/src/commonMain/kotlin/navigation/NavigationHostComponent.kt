@@ -11,13 +11,11 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
+import org.kodein.di.*
 import screen.home.HomeScreenComponent
 import screen.login.LoginScreenComponent
 
-/**
- * Navigator
- */
-class NavHostComponent(
+class NavigationHostComponent(
     componentContext: ComponentContext
 ) : Component, ComponentContext by componentContext {
     private val navigation = StackNavigation<ScreenConfig>()
@@ -27,14 +25,21 @@ class NavHostComponent(
         childFactory = ::createScreenComponent
     )
 
+    private var di: DI? = null;
+
     private fun createScreenComponent(
         screenConfig: ScreenConfig,
         componentContext: ComponentContext
     ): Component {
-        return when (screenConfig) {
-            is ScreenConfig.Home -> HomeScreenComponent(componentContext, navigation)
+        if (di == null){
+           di = DI {
+                bindSingleton<StackNavigation<ScreenConfig>> { navigation }
+            }
+        }
 
-            is ScreenConfig.Login -> LoginScreenComponent(componentContext, navigation)
+        return when (screenConfig) {
+            is ScreenConfig.Home -> di!!.direct.newInstance { HomeScreenComponent(componentContext, instance()) }
+            is ScreenConfig.Login -> di!!.direct.newInstance { LoginScreenComponent(componentContext, instance()) }
         }
     }
 

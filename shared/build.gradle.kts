@@ -20,6 +20,7 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation("com.arkivanov.decompose:decompose:2.1.4")
                 implementation("com.arkivanov.decompose:extensions-compose-jetbrains:2.1.4")
+                implementation("org.kodein.di:kodein-di-framework-compose:7.19.0")
             }
         }
         val androidMain by getting {
