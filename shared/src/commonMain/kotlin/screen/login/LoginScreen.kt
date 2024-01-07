@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 
 @Composable
@@ -13,7 +14,7 @@ fun LoginScreen(component: LoginScreenComponent) {
 
     val state by component.state.subscribeAsState()
 
-    Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
         TextField(
             value = state.login,
             onValueChange = component::updateLogin,
