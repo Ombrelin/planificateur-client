@@ -12,7 +12,9 @@ class MainActivity : AppCompatActivity() {
         val root = NavigationHostComponent(componentContext = defaultComponentContext())
 
         setContent {
-            root.render()
+            App {
+                root.render()
+            }
         }
     }
 
