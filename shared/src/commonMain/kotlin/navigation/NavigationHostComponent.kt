@@ -11,6 +11,7 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
+import com.russhwolf.settings.Settings
 import org.kodein.di.*
 import screen.home.HomeScreenComponent
 import screen.login.LoginScreenComponent
@@ -19,9 +20,10 @@ class NavigationHostComponent(
     componentContext: ComponentContext
 ) : Component, ComponentContext by componentContext {
     private val navigation = StackNavigation<ScreenConfig>()
+    private val settings = Settings()
     private val stack = childStack(
         source = navigation,
-        initialConfiguration = ScreenConfig.Login,
+        initialConfiguration = if(settings.hasKey("token")) ScreenConfig.Home else ScreenConfig.Login,
         childFactory = ::createScreenComponent
     )
 

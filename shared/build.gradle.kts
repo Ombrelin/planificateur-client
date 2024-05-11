@@ -3,7 +3,10 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22"
 }
+
+val ktorVersion = extra["ktor.version"] as String
 
 kotlin {
     androidTarget()
@@ -22,6 +25,13 @@ kotlin {
                 implementation("com.arkivanov.decompose:decompose:2.1.4")
                 implementation("com.arkivanov.decompose:extensions-compose-jetbrains:2.1.4")
                 implementation("org.kodein.di:kodein-di-framework-compose:7.19.0")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-cio:$ktorVersion")
+                implementation("com.russhwolf:multiplatform-settings:1.1.1")
+                implementation("com.russhwolf:multiplatform-settings-no-arg:1.1.1")
+                
             }
         }
         val androidMain by getting {
