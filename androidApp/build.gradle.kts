@@ -16,6 +16,7 @@ kotlin {
             }
         }
     }
+    jvmToolchain(17)
 }
 
 android {
@@ -32,10 +33,14 @@ android {
         versionName = "1.0"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         jvmToolchain(17)
     }
+}
+dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+}
+repositories {
+    mavenCentral()
 }

@@ -48,6 +48,11 @@ class HomeScreenComponent(
         HomeScreen(this)
     }
 
+    fun logout() {
+        settings.remove("token")
+        this.navigationService.replaceAll(NavigationHostComponent.ScreenConfig.Login)
+    }
+
     data class State(
         val polls: List<PollWithoutVotes>
     )
