@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
@@ -71,7 +71,7 @@ fun HomeScreen(component: HomeScreenComponent) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(text = poll.id, style = MaterialTheme.typography.h5, textAlign = TextAlign.Left)
+                        Text(text = poll.id, style = MaterialTheme.typography.titleSmall, textAlign = TextAlign.Left)
                     }
                 }
             }
